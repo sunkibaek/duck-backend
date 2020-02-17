@@ -15,12 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.7.1",
+    "@types/uuid": "^3.4.7",
     "apollo-server": "^2.10.1",
     "graphql": "^14.6.0",
     "prettier": "^1.19.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

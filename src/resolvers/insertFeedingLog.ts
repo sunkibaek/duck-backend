@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 enum FoodCategory {
   ANIMAL = "ANIMAL",
   PLANT = "PLANT"
@@ -31,11 +33,25 @@ interface IInsertFeedingLogArgs {
 
 const insertFeedingLog = async (
   _: any,
-  args: IInsertFeedingLogArgs
+  {
+    input: { dateTime, location, howMany, foodCategory, food, foodQuantity }
+  }: IInsertFeedingLogArgs
 ): Promise<IFeedingLog | null> => {
-  console.log(args);
+  const now = new Date().toISOString();
 
-  return null;
+  const feedingLog: IFeedingLog = {
+    id: uuid(),
+    dateTime,
+    location,
+    howMany,
+    foodCategory,
+    food,
+    foodQuantity,
+    createdAt: now,
+    updatedAt: now
+  };
+
+  return feedingLog;
 };
 
 export default insertFeedingLog;
