@@ -4,7 +4,7 @@ enum FoodCategory {
 }
 
 interface IFeedingLog {
-  id: number;
+  id: string;
 
   dateTime: string;
   location: string;

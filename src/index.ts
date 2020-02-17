@@ -18,7 +18,7 @@ const typeDefs = gql`
   }
 
   type FeedingLog {
-    id: Int!
+    id: ID!
 
     dateTime: String!
     location: String!
