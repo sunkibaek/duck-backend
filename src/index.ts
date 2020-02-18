@@ -8,8 +8,7 @@ const resolvers = {
     insertFeedingLog
   },
   Query: {
-    feedingLogs,
-    feedingLogById: () => null
+    feedingLogs
   }
 };
 
@@ -48,7 +47,6 @@ const typeDefs = gql`
 
   type Query {
     feedingLogs: [FeedingLog]!
-    feedingLogById(id: Int!): FeedingLog
   }
 `;
 
