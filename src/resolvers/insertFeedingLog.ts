@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
-import * as AWS from "aws-sdk";
 
 import { IFeedingLog } from "../types";
+import DynamoDB from "../services/DynamoDB";
 
 interface IInsertFeedingLogArgs {
   input: Pick<
@@ -27,13 +27,6 @@ const insertFeedingLog = async (
 ): Promise<IFeedingLog | null> => {
   const now = new Date().toISOString();
 
-  const docClient = new AWS.DynamoDB.DocumentClient({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    endpoint: "http://localhost:8000",
-    region: "us-west-2"
-  });
-
   const feedingLog: IFeedingLog = {
     id: uuid(),
     dateTime,
@@ -46,7 +39,7 @@ const insertFeedingLog = async (
     updatedAt: now
   };
 
-  await docClient
+  await DynamoDB.docClient
     .put({
       Item: feedingLog,
       TableName: DB_TABLES.FeedingLog
