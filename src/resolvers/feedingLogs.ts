@@ -1,23 +1,6 @@
 import * as AWS from "aws-sdk";
 
-enum FoodCategory {
-  ANIMAL = "ANIMAL",
-  PLANT = "PLANT"
-}
-
-interface IFeedingLog {
-  id: string;
-
-  dateTime: string;
-  location: string;
-  howMany: number;
-  foodCategory: FoodCategory;
-  food: string;
-  foodQuantity: number;
-
-  createdAt: string;
-  updatedAt: string;
-}
+import { IFeedingLog } from "../types";
 
 enum DB_TABLES {
   FeedingLog = "FeedingLog"
