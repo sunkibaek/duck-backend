@@ -1,6 +1,6 @@
-import { v4 as uuid } from "uuid";
-
 import { IFeedingLog, FoodCategory } from "../types";
+import uuid from "../utils/uuid";
+import now from "../utils/now";
 
 type FeedingLogParams = Pick<
   IFeedingLog,
@@ -9,14 +9,15 @@ type FeedingLogParams = Pick<
 
 class FeedingLog implements IFeedingLog {
   public static build = (params: FeedingLogParams): FeedingLog => {
-    const now = new Date().toISOString();
     const id = uuid();
+    const createdAt = now();
+    const updatedAt = createdAt;
 
     return new FeedingLog({
       ...params,
       id,
-      createdAt: now,
-      updatedAt: now
+      createdAt,
+      updatedAt
     });
   };
 
