@@ -15,10 +15,6 @@ interface IInsertFeedingLogArgs {
   >;
 }
 
-enum DB_TABLES {
-  FeedingLog = "FeedingLog"
-}
-
 const insertFeedingLog = async (
   _: any,
   {
@@ -39,12 +35,7 @@ const insertFeedingLog = async (
     updatedAt: now
   };
 
-  await DynamoDB.docClient
-    .put({
-      Item: feedingLog,
-      TableName: DB_TABLES.FeedingLog
-    })
-    .promise();
+  await DynamoDB.putFeedingLog(feedingLog);
 
   return feedingLog;
 };
