@@ -1,7 +1,7 @@
-import { v4 as uuid } from "uuid";
-
 import { IFeedingLog } from "../types";
 import DynamoDB from "../services/DynamoDB";
+
+import FeedingLog from "../models/FeedingLog";
 
 interface IInsertFeedingLogArgs {
   input: Pick<
@@ -21,21 +21,16 @@ const insertFeedingLog = async (
     input: { dateTime, location, howMany, foodCategory, food, foodQuantity }
   }: IInsertFeedingLogArgs
 ): Promise<IFeedingLog | null> => {
-  const now = new Date().toISOString();
-
-  const feedingLog: IFeedingLog = {
-    id: uuid(),
+  const feedingLog = FeedingLog.build({
     dateTime,
     location,
     howMany,
     foodCategory,
     food,
-    foodQuantity,
-    createdAt: now,
-    updatedAt: now
-  };
+    foodQuantity
+  });
 
-  await DynamoDB.putFeedingLog(feedingLog);
+  await DynamoDB.putFeedingLog(feedingLog.toData());
 
   return feedingLog;
 };
