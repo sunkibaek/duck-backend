@@ -1,12 +1,13 @@
 import { ApolloServer, gql } from "apollo-server";
 import insertFeedingLog from "./resolvers/insertFeedingLog";
+import feedingLogs from "./resolvers/feedingLogs";
 
 const resolvers = {
   Mutation: {
     insertFeedingLog
   },
   Query: {
-    feedingLogs: () => [],
+    feedingLogs,
     feedingLogById: () => null
   }
 };
