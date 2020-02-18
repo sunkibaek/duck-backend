@@ -8,7 +8,7 @@
     "build": "npm run clean && tsc",
     "build:watch": "npm run clean && tsc --watch",
     "dev": "nodemon",
-    "start": "npm build && node dist/index.js",
+    "start": "npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
