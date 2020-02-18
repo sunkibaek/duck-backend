@@ -6,12 +6,17 @@ enum DB_TABLES {
   FeedingLog = "FeedingLog"
 }
 
+const REGION = "us-west-2";
+const LOCAL_ENDPOINT = "http://localhost:8000";
+
 const DynamoDB = {
   docClient: new AWS.DynamoDB.DocumentClient({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    endpoint: "http://localhost:8000",
-    region: "us-west-2"
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || "test-access-key-id",
+    secretAccessKey:
+      process.env.AWS_SECRET_ACCESS_KEY || "test-secret-access-key",
+    endpoint:
+      process.env.NODE_ENV === "production" ? undefined : LOCAL_ENDPOINT,
+    region: REGION
   }),
 
   putFeedingLog: async (feedingLog: IFeedingLog) => {
